@@ -7,7 +7,18 @@ using Util;
 namespace Game {
     public class GameInstance
     {
-       
+        public struct PlayingField
+        {
+            Agent owner;
+            CardList deck;
+            CardList hand;
+        }
+
+    }
+
+    public abstract class CardList 
+    {
+        
     }
 
     public abstract class Agent
@@ -26,8 +37,8 @@ namespace Game {
     }
 
     public class Card
-    { 
-    
+    {
+        
     }
 
     public class Deck
