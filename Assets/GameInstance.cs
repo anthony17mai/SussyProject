@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Util;
+
 namespace Game {
     public class GameInstance
     {
@@ -30,7 +32,7 @@ namespace Game {
 
     public class Deck
     {
-        Util.Multiset<Card> cards;
+        Multiset<Card> cards;
     }
 
 
