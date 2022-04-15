@@ -16,9 +16,13 @@ namespace Game {
 
     }
 
-    public abstract class CardList 
+    public abstract class CardList
     {
-        
+        List<Card> collection = new List<Card>();
+
+        public CardList (DeckData deckData) {
+            deckData.cards
+        }
     }
 
     public abstract class Agent
@@ -28,7 +32,7 @@ namespace Game {
 
     public class Player : Agent
     {
-
+        
     }
 
     public class Opponent : Agent
@@ -43,7 +47,7 @@ namespace Game {
 
     public class DeckData
     {
-        Multiset<Card> cards;
+        public Multiset<Card> cards;
     }
 
 
