@@ -20,6 +20,11 @@ namespace Util
 
         private SortedDictionary<T, uint> set;
 
+        public Multiset()
+        {
+            SortedDictionary<T, uint> newSet = new SortedDictionary<T, uint>();
+        }
+
         public void AddCards(T card, uint copies)
         {
             if (set.ContainsKey(card))
