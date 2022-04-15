@@ -4,20 +4,8 @@ using UnityEngine;
 
 namespace Util
 {
-    public class Multiset<T>
+    public class Multiset<T> : IEnumerable<KeyValuePair<T, uint>>
     {
-        private struct pair
-        {
-            uint copies;
-            T card;
-
-            public pair(T card, uint copies)
-            {
-                this.card = card;
-                this.copies = copies;
-            }
-        }
-
         private SortedDictionary<T, uint> set;
 
         // Constructor
@@ -64,6 +52,15 @@ namespace Util
         {
             get { return set[t]; }
             set { GetCopies(t); }
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return set.GetEnumerator();
+        }
+        IEnumerator<KeyValuePair<T, uint>> IEnumerable<KeyValuePair<T, uint>>.GetEnumerator()
+        {
+            return set.GetEnumerator();
         }
     }
 }
