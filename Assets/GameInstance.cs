@@ -23,7 +23,7 @@ namespace Game {
 
     public abstract class Agent
     {
-        public Deck deck;
+        public DeckData deck;
     }
 
     public class Player : Agent
@@ -41,7 +41,7 @@ namespace Game {
         
     }
 
-    public class Deck
+    public class DeckData
     {
         Multiset<Card> cards;
     }

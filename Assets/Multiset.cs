@@ -20,6 +20,7 @@ namespace Util
 
         private SortedDictionary<T, uint> set;
 
+        // Constructor
         public Multiset()
         {
             SortedDictionary<T, uint> newSet = new SortedDictionary<T, uint>();
