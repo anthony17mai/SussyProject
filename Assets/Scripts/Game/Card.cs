@@ -1,19 +1,13 @@
-using System.Text.Json;
 using System.IO;
+using static UnityEngine.JsonUtility;
 
 namespace Game
 {
     class CardSerializer
-    { 
-        public static Card Deserialize(string fil)
-        {
-            FileStream fs = File.Open(fil, FileMode.Open);
-            Card res = JsonSerializer.Deserialize<Card>(fs);
-            return res;
-        }
+    {
         public static Card Deserialize(UnityEngine.TextAsset txt)
         {
-            Card res = JsonSerializer.Deserialize<Card>(txt.text);
+            Card res = FromJson<Card>(txt.text);
             return res;
         }
     }
