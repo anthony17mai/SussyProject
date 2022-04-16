@@ -154,10 +154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardFile: {fileID: 4900000, guid: 2634d13a5c628df45bbaa803c7efbbde, type: 3}
-  cardImage: {fileID: 0}
-  cardName: {fileID: 0}
-  cardDesc: {fileID: 0}
-  cardCost: {fileID: 0}
+  cardImage: {fileID: 844670211}
+  cardName: {fileID: 1768770838}
+  cardDesc: {fileID: 1862699860}
+  cardCost: {fileID: 1651131954}
 --- !u!212 &589374118
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -483,7 +483,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
@@ -896,7 +896,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 200
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
