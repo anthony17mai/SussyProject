@@ -1,6 +1,6 @@
 {
 	"Name": "Main",
 	"Description": "Args",
-	"Cost": "10",
-	"Image": "Secret.json",
+	"Cost": 10,
+	"Image": "Secret.json"
 }
