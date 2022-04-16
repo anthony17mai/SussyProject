@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GenericCard : MonoBehaviour
 {
-    public TextAsset cardFil;
+    public TextAsset cardFile;
     private Game.Card card;
     public UnityEngine.UI.Image cardImage;
     public UnityEngine.UI.Text cardName;
@@ -15,7 +15,7 @@ public class GenericCard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        card = Game.CardSerializer.Deserialize(cardFil);
+        card = Game.CardSerializer.Deserialize(cardFile);
         //cardImage.sprite = card.sprite;
         cardName.text = card.Name;
         cardDesc.text = card.Description;
