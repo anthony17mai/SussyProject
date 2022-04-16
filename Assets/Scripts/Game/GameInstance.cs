@@ -85,14 +85,6 @@ namespace Game {
 
     }
 
-    public class Card
-    {
-        public string name;
-        public string description;
-        public int cost;
-        public UnityEngine.Sprite sprite;
-    }
-
     public class DeckData
     {
         public Multiset<Card> cards;
