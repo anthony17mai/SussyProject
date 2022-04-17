@@ -27,6 +27,7 @@ namespace Game {
             if(owner == true)
             {
                 // use left field
+                ghj
                 field = leftField;
             }
             else if(owner == false)
