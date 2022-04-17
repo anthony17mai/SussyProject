@@ -46,7 +46,11 @@ namespace Game {
     {
         List<CardInstance> collection = new List<CardInstance>();
 
-        public CardList (DeckData deckData) {
+        /// <summary>
+        /// Initializes the Card List using a DeckData.
+        /// </summary>
+        /// <param name="deckData"> Contains the set of cards to be used in the deck.</param>
+        public CardList(DeckData deckData) {
             foreach (KeyValuePair<CardInstance, uint> pair in deckData.cards)
             {
                 for(uint i = pair.Value; i > 0; i--)
@@ -54,7 +58,15 @@ namespace Game {
             }
         }
 
-        public void Shuffle (System.Random rng)
+        /// <summary>
+        /// Initializes the Card List to an empty list.
+        /// </summary>
+        public CardList()
+        {
+            // lol nothing
+        }
+
+        public void Shuffle(System.Random rng)
         {
             var shuffled = collection.OrderBy(item => rng.Next());
             collection = shuffled.ToList<CardInstance>();
@@ -62,7 +74,7 @@ namespace Game {
 
         // Check for null if empty
         // Remove also returns card removed, can be used for draw
-        public CardInstance RemoveCardTop ()
+        public CardInstance RemoveCardTop()
         {
             CardInstance topCard;
 
@@ -93,29 +105,6 @@ namespace Game {
         {
             collection.Insert(index, card);
         }
-    }
-
-    public abstract class Agent
-    {
-        public struct CharData {
-            public DeckData deckData;
-            public int maxHP;
-            public int maxMana;
-            public int stackSize;
-            public int handSize;
-        }
-
-        CharData chardata;
-    }
-
-    public class Player : Agent
-    {
-        
-    }
-
-    public class Opponent : Agent
-    {
-
     }
 
     public class DeckData
