@@ -12,9 +12,34 @@ namespace Game {
             Agent owner;
             CardList deck;
             CardList hand;
+            CardList stack;
         }
 
-        public static System.Random rng = new System.Random();
+        public System.Random rng = new System.Random();
+
+        PlayingField leftField;
+        PlayingField rightField;
+        PlayingField dummyField;
+
+        public void playCard(int cardLocation, bool owner)
+        {
+            ref PlayingField field = ref dummyField;
+            if(owner == true)
+            {
+                // use left field
+                field = leftField;
+            }
+            else if(owner == false)
+            {
+                // use right field
+                field = rightField;
+            }
+        }
+
+        public void endTurn(bool owner)
+        {
+
+        }
     }
 
     public abstract class CardList
@@ -72,7 +97,15 @@ namespace Game {
 
     public abstract class Agent
     {
-        public DeckData deck;
+        public struct CharData {
+            public DeckData deckData;
+            public int maxHP;
+            public int maxMana;
+            public int stackSize;
+            public int handSize;
+        }
+
+        CharData chardata;
     }
 
     public class Player : Agent

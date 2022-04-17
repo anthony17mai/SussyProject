@@ -20,4 +20,10 @@ namespace Game
         public int Cost;
         public string Image;
     }
+
+    public class CardInstance
+    {
+        Card card;
+        int id;
+    }
 }
