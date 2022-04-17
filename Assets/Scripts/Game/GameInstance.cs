@@ -9,29 +9,28 @@ namespace Game {
     {
         public struct PlayingField
         {
-            Agent owner;
-            CardList deck;
-            CardList hand;
-            CardList stack;
+            public Agent owner;
+            public CardList deck;
+            public CardList hand;
+            public CardList stack;
         }
 
         public System.Random rng = new System.Random();
 
         PlayingField leftField;
         PlayingField rightField;
-        PlayingField dummyField;
 
         public void playCard(int cardLocation, bool owner)
         {
-            ref PlayingField field = ref dummyField;
+            ref PlayingField field = ref leftField;
             if(owner == true)
             {
-                // use left field
                 field = leftField;
+                CardInstance card = field.hand.RemoveCardAt(cardLocation);
+
             }
             else if(owner == false)
             {
-                // use right field
                 field = rightField;
             }
         }
@@ -44,10 +43,10 @@ namespace Game {
 
     public abstract class CardList
     {
-        List<Card> collection = new List<Card>();
+        List<CardInstance> collection = new List<CardInstance>();
 
         public CardList (DeckData deckData) {
-            foreach (KeyValuePair<Card, uint> pair in deckData.cards)
+            foreach (KeyValuePair<CardInstance, uint> pair in deckData.cards)
             {
                 for(uint i = pair.Value; i > 0; i--)
                     collection.Add(pair.Key);
@@ -57,14 +56,14 @@ namespace Game {
         public void Shuffle (System.Random rng)
         {
             var shuffled = collection.OrderBy(item => rng.Next());
-            collection = shuffled.ToList<Card>();
+            collection = shuffled.ToList<CardInstance>();
         }
 
         // Check for null if empty
         // Remove also returns card removed, can be used for draw
-        public Card RemoveCardTop ()
+        public CardInstance RemoveCardTop ()
         {
-            Card topCard;
+            CardInstance topCard;
 
             if(collection.Count == 0)
                 return null;
@@ -76,20 +75,20 @@ namespace Game {
         }
 
         // If index = 0, bottom of deck
-        public Card RemoveCardAt (int index)
+        public CardInstance RemoveCardAt (int index)
         {
-            Card card;
+            CardInstance card;
             card = collection[index];
             collection.RemoveAt(index);
             return card;
         }
 
-        public void AddCardTop (Card card)
+        public void AddCardTop (CardInstance card)
         {
             collection.Add(card);
         }
 
-        public void AddCardAt (Card card, int index)
+        public void AddCardAt (CardInstance card, int index)
         {
             collection.Insert(index, card);
         }
