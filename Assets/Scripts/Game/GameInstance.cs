@@ -19,11 +19,11 @@ namespace Game {
 
         PlayingField leftField;
         PlayingField rightField;
-        //PlayingField dummyField;
+        PlayingField dummyField;
 
         public void playCard(int cardLocation, bool owner)
         {
-            ref PlayingField field = ref leftField;
+            ref PlayingField field = ref dummyField;
             if(owner == true)
             {
                 // use left field
