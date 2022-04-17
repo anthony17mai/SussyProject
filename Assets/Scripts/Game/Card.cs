@@ -1,4 +1,5 @@
 using System.IO;
+using System.Collections.Generic;
 using static UnityEngine.JsonUtility;
 
 namespace Game
@@ -23,15 +24,22 @@ namespace Game
 
     public class CardInstance
     {
-        private static int _current_id = 0;
+        private static List<CardInstance> _id_mapping;
 
-        Card card;
-        int id;
-
-        CardInstance(Card c)
+        // factory pattern
+        public static CardInstance MakeInstance(Card c) 
         {
-            card = c;
-            id = _current_id++;
+            return new CardInstance(c);
+        }
+
+        public Card Card { get; private set; }
+        public int Id { get; private set; }
+
+        private CardInstance(Card c)
+        {
+            Card = c;
+            Id = _id_mapping.Count;
+            _id_mapping.Add(this);
         }
     }
 }
