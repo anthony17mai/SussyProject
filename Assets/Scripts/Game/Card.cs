@@ -23,7 +23,15 @@ namespace Game
 
     public class CardInstance
     {
+        private static int _current_id = 0;
+
         Card card;
         int id;
+
+        CardInstance(Card c)
+        {
+            card = c;
+            id = _current_id++;
+        }
     }
 }
