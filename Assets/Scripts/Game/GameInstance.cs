@@ -14,6 +14,11 @@ namespace Game {
             public CardList hand;
             public CardList stack;
         }
+        public struct RoundInstance
+        {
+            public int attack;
+            public int def;
+        }
 
         public System.Random rng = new System.Random();
 

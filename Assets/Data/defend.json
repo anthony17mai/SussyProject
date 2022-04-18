@@ -1,6 +1,6 @@
 {
-	"Name": "Defend
-	"Description": "Block 5 Damage"
+	"Name": "Defend",
+	"Description": "Block 5 Damage",
 	"Cost": 1,
 	"Image": "Secret.png",
 	"Behavior": "Defend"

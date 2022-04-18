@@ -2,24 +2,75 @@ using System.IO;
 using System.Collections.Generic;
 using static UnityEngine.JsonUtility;
 
+using static Game.GameInstance;
+
 namespace Game
 {
-    class CardSerializer
+    public class CardSerializer
     {
+        [System.Serializable]
+        public class CardImport
+        {
+            public string Name;
+            public string Description;
+            public int Cost;
+            public string Image;
+            public string Behavior;
+        }
+
         public static Card Deserialize(UnityEngine.TextAsset txt)
         {
-            Card res = FromJson<Card>(txt.text);
-            return res;
+            CardImport res = FromJson<CardImport>(txt.text);
+            Card ret = new Card(res);
+            return ret;
         }
     }
 
     [System.Serializable]
     public class Card
     {
-        public string Name;
-        public string Description;
-        public int Cost;
-        public string Image;
+        public delegate void CardBehavior(GameInstance state, out RoundInstance ownerTraits);
+        //temporary
+        public static void StrikeBehavior(GameInstance state, out RoundInstance ownerTraits)
+        {
+            ownerTraits.attack = 7;
+            ownerTraits.def = 0;
+        }
+        public static void DefendBehavior(GameInstance state, out RoundInstance ownerTraits)
+        {
+            ownerTraits.attack = 0;
+            ownerTraits.def = 5;
+        }
+
+        public string name;
+        public string description;
+        public int cost;
+        public string image;
+        public CardBehavior behavior;
+
+        public Card(CardSerializer.CardImport import) : this(import.Name, import.Description, import.Cost, import.Image, null)
+        {
+            if (import.Behavior == "Defend")
+            {
+                this.behavior = DefendBehavior;
+            } 
+            else if (import.Behavior == "Strike")
+            {
+                this.behavior = StrikeBehavior;
+            }
+            else
+            {
+                //problem - no behavior
+            }
+        }
+        public Card(string name, string description, int cost, string image, CardBehavior behavior)
+        {
+            this.name = name;
+            this.description = description;
+            this.cost = cost;
+            this.image = image;
+            this.behavior = behavior;
+        }
     }
 
     public class CardInstance
