@@ -27,7 +27,7 @@ namespace Game {
         // true = left, false = right
         bool turn;
 
-        public void playCard(int cardLocation, bool owner)
+        public void PlayCard(int cardLocation, bool owner)
         {
             ref PlayingField field = ref leftField;
             if(owner == true)
@@ -42,7 +42,7 @@ namespace Game {
             field.stack.AddCardTop(card);
         }
 
-        public void endTurn(bool owner)
+        public void EndTurn(bool owner)
         {
             ref PlayingField field = ref leftField;
             if(owner == true)
