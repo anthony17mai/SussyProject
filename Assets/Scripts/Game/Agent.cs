@@ -28,10 +28,24 @@ namespace Game
             public int stackSize;
             public int handSize;
         }
+        public int currentHP;
+        public int currentMana;
 
         protected CharData chardata;
 
         public abstract DecisionData PromptAgent(GameInstance game);
+
+        public void TakeDamage(int damage)
+        {
+            currentHP = System.Math.Max(0, currentHP - damage);
+
+            // die if hp = 0
+        }
+
+        public void HealDamage(int heal)
+        {
+            currentHP = System.Math.Min(chardata.maxHP, currentHP + heal);
+        }
     }
 
     public class Player : Agent

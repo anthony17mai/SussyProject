@@ -86,6 +86,8 @@ namespace Game
         public Card Card { get; private set; }
         public int Id { get; private set; }
 
+        public Card.CardBehavior Behavior { get { return Card.behavior; }}
+
         private CardInstance(Card c)
         {
             Card = c;

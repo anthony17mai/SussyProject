@@ -44,10 +44,25 @@ namespace Game {
 
         public void EndTurn(bool owner)
         {
-            ref PlayingField field = ref leftField;
             if(owner == true)
             {
-                // resolve stack
+                ref PlayingField max = ref rightField.stack.Count > leftField.stack.Count ?  ref rightField :  ref leftField;
+                int min = System.Math.Min(leftField.stack.Count, rightField.stack.Count);
+                for(int i = 0; i < min; i++)
+                {
+                    CardInstance leftCard = leftField.stack.GetCard(i);
+                    CardInstance rightCard = rightField.stack.GetCard(i);
+                    RoundInstance leftRound;
+                    RoundInstance rightRound;
+                    leftCard.Behavior(this, out leftRound);
+                    rightCard.Behavior(this, out rightRound);
+
+                    int leftTotal = System.Math.Max(0, leftRound.attack - rightRound.def);
+                    int rightTotal = System.Math.Max(0, rightRound.attack - leftRound.def);
+
+                    leftField.owner.TakeDamage(rightTotal);
+                    rightField.owner.TakeDamage(leftTotal);
+                }
                 turn = false;
             }
             else if(owner == false)
@@ -81,10 +96,18 @@ namespace Game {
             // lol nothing
         }
 
+        public int Count { get { return collection.Count; } }
+
         public void Shuffle(System.Random rng)
         {
             var shuffled = collection.OrderBy(item => rng.Next());
             collection = shuffled.ToList<CardInstance>();
+        }
+
+        public CardInstance GetCard(int index)
+        {
+            CardInstance card = collection[index];
+            return card;
         }
 
         // Check for null if empty
