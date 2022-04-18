@@ -17,9 +17,10 @@ public class GenericCard : MonoBehaviour
     {
         card = Game.CardSerializer.Deserialize(cardFile);
         //cardImage.sprite = card.sprite;
-        cardName.text = card.Name;
-        cardDesc.text = card.Description;
-        cardCost.text = card.Cost.ToString();
+        cardName.text = card.name;
+        cardDesc.text = card.description;
+        cardCost.text = card.cost.ToString();
+
     }
 
     // Update is called once per frame
