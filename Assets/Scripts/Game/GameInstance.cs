@@ -19,26 +19,36 @@ namespace Game {
 
         PlayingField leftField;
         PlayingField rightField;
+        // true = left, false = right
+        bool turn;
 
-        // FINISH THIS SECTION
         public void playCard(int cardLocation, bool owner)
         {
             ref PlayingField field = ref leftField;
             if(owner == true)
             {
                 field = leftField;
-                CardInstance card = field.hand.RemoveCardAt(cardLocation);
-
             }
             else if(owner == false)
             {
                 field = rightField;
             }
+            CardInstance card = field.hand.RemoveCardAt(cardLocation);
+            field.stack.AddCardTop(card);
         }
 
         public void endTurn(bool owner)
         {
-
+            ref PlayingField field = ref leftField;
+            if(owner == true)
+            {
+                // resolve stack
+                turn = false;
+            }
+            else if(owner == false)
+            {
+                turn = true;
+            }
         }
     }
 
