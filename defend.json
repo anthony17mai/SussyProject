@@ -1,0 +1,7 @@
+{
+	"Name": "Strike",
+	"Description": "Deal 7 damage",
+	"Cost": 1,
+	"Image": "Secret.png",
+	"Behavior": "Attack"
+}
