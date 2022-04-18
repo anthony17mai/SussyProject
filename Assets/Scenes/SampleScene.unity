@@ -177,7 +177,7 @@ PrefabInstance:
     - target: {fileID: 8538209562131444158, guid: 9203462e436a39d4aabf1e41f63de27b, type: 3}
       propertyPath: cardFile
       value: 
-      objectReference: {fileID: 4900000, guid: 4ffd68d3e36b4de48b60ff3b0197892e, type: 3}
+      objectReference: {fileID: 4900000, guid: 2634d13a5c628df45bbaa803c7efbbde, type: 3}
     - target: {fileID: 8538209562131444159, guid: 9203462e436a39d4aabf1e41f63de27b, type: 3}
       propertyPath: m_Name
       value: Strike
@@ -498,6 +498,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8538209562131444158, guid: 9203462e436a39d4aabf1e41f63de27b, type: 3}
+      propertyPath: cardFile
+      value: 
+      objectReference: {fileID: 4900000, guid: 4ffd68d3e36b4de48b60ff3b0197892e, type: 3}
     - target: {fileID: 8538209562131444159, guid: 9203462e436a39d4aabf1e41f63de27b, type: 3}
       propertyPath: m_Name
       value: Defend
