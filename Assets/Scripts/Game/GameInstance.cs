@@ -70,6 +70,56 @@ namespace Game {
                 turn = true;
             }
         }
+
+        public IEnumerator Cycle()
+        {
+            while(true) // primitivity
+            {
+                turn = false;
+                Agent.DecisionData decision = null;
+                IEnumerator cycle = null;
+                if(turn == true)
+                {
+                    cycle = leftField.owner.PromptAgent(this, ref decision);
+                    while(cycle != null)
+                    {
+                        yield return cycle;
+                        cycle = leftField.owner.PromptAgent(this, ref decision);
+                    }
+
+                    if(decision.type == Decision.play_card)
+                    {
+                        int location = leftField.hand.FindCardLocation(decision.arguments[0]);
+                        PlayCard(location, turn);
+                    }
+                    else if(decision.type == Decision.end_turn)
+                    {
+                        EndTurn(turn);
+                        turn = !turn;
+                    }
+                }
+                else if(turn == false)
+                {
+                    cycle = rightField.owner.PromptAgent(this, ref decision);
+                    while(cycle != null)
+                    {
+                        yield return cycle;
+                        cycle = rightField.owner.PromptAgent(this, ref decision);
+                    }
+
+                    if(decision.type == Decision.play_card)
+                    {
+                        int location = rightField.hand.FindCardLocation(decision.arguments[0]);
+                        PlayCard(location, turn);
+                    }
+                    else if(decision.type == Decision.end_turn)
+                    {
+                        EndTurn(turn);
+                        turn = !turn;
+                    }
+                }
+            }
+        }
     }
 
     public abstract class CardList
@@ -104,6 +154,10 @@ namespace Game {
             collection = shuffled.ToList<CardInstance>();
         }
 
+        public int FindCardLocation(CardInstance card)
+        {
+            return collection.FindIndex(x => x == card);
+        }
         public CardInstance GetCard(int index)
         {
             CardInstance card = collection[index];

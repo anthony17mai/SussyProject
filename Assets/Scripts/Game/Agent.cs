@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +34,7 @@ namespace Game
 
         protected CharData chardata;
 
-        public abstract DecisionData PromptAgent(GameInstance game);
+        public abstract IEnumerator PromptAgent(GameInstance game, ref DecisionData decision);
 
         public void TakeDamage(int damage)
         {
@@ -50,7 +51,7 @@ namespace Game
 
     public class Player : Agent
     {
-        public override DecisionData PromptAgent(GameInstance game)
+        public override IEnumerator PromptAgent(GameInstance game, ref DecisionData decision)
         {
             // TODO: give the user control of the game - the user can choose to play a card or to pass their turn.
             throw new NotImplementedException();
@@ -62,7 +63,7 @@ namespace Game
     /// </summary>
     public class LanPlayer : Agent
     {
-        public override DecisionData PromptAgent(GameInstance game)
+        public override IEnumerator PromptAgent(GameInstance game, ref DecisionData decision)
         {
             throw new NotImplementedException();
         }
@@ -79,9 +80,10 @@ namespace Game
 
         public Decider decider;
 
-        public override DecisionData PromptAgent(GameInstance game)
+        public override IEnumerator PromptAgent(GameInstance game, ref DecisionData decision)
         {
-            return decider.Invoke(game);
+            decision = decider.Invoke(game);
+            return null;
         }
 
         public Opponent(Decider decider)
