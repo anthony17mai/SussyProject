@@ -45,7 +45,7 @@ namespace Game
         public string name;
         public string description;
         public int cost;
-        public string image;
+        public UnityEngine.Sprite image;
         public CardBehavior behavior;
 
         public Card(CardSerializer.CardImport import) : this(import.Name, import.Description, import.Cost, import.Image, null)
@@ -68,7 +68,7 @@ namespace Game
             this.name = name;
             this.description = description;
             this.cost = cost;
-            this.image = image;
+            this.image = UnityEngine.Resources.Load<UnityEngine.Sprite>(image);
             this.behavior = behavior;
         }
     }

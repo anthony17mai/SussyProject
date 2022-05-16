@@ -59,7 +59,7 @@ namespace Game
     }
 
     /// <summary>
-    /// Repreesentation of a player playing synchronously using a lan connection
+    /// Representation of a player playing synchronously using a lan connection
     /// </summary>
     public class LanPlayer : Agent
     {

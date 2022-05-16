@@ -2,6 +2,6 @@
 	"Name": "Defend",
 	"Description": "Block 5 Damage",
 	"Cost": 1,
-	"Image": "Secret.png",
+	"Image": "CardPngs/BlockCard",
 	"Behavior": "Defend"
 }

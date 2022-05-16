@@ -16,7 +16,7 @@ public class GenericCard : MonoBehaviour
     void Start()
     {
         card = Game.CardSerializer.Deserialize(cardFile);
-        //cardImage.sprite = card.sprite;
+        cardImage.sprite = card.image;
         cardName.text = card.name;
         cardDesc.text = card.description;
         cardCost.text = card.cost.ToString();
