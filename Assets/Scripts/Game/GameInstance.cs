@@ -22,10 +22,10 @@ namespace Game {
 
         public System.Random rng = new System.Random();
 
-        PlayingField leftField;
-        PlayingField rightField;
+        public PlayingField leftField;
+        public PlayingField rightField;
         // true = left, false = right
-        bool turn;
+        public bool turn;
 
         public void PlayCard(int cardLocation, bool owner)
         {
@@ -124,7 +124,7 @@ namespace Game {
 
     public abstract class CardList
     {
-        List<CardInstance> collection = new List<CardInstance>();
+        public List<CardInstance> Collection { get; private set; } = new List<CardInstance>();
 
         /// <summary>
         /// Initializes the Card List using a DeckData.
@@ -134,7 +134,7 @@ namespace Game {
             foreach (KeyValuePair<CardInstance, uint> pair in deckData.cards)
             {
                 for(uint i = pair.Value; i > 0; i--)
-                    collection.Add(pair.Key);
+                    Collection.Add(pair.Key);
             }
         }
 
@@ -146,21 +146,21 @@ namespace Game {
             // lol nothing
         }
 
-        public int Count { get { return collection.Count; } }
+        public int Count { get { return Collection.Count; } }
 
         public void Shuffle(System.Random rng)
         {
-            var shuffled = collection.OrderBy(item => rng.Next());
-            collection = shuffled.ToList<CardInstance>();
+            var shuffled = Collection.OrderBy(item => rng.Next());
+            Collection = shuffled.ToList<CardInstance>();
         }
 
         public int FindCardLocation(CardInstance card)
         {
-            return collection.FindIndex(x => x == card);
+            return Collection.FindIndex(x => x == card);
         }
         public CardInstance GetCard(int index)
         {
-            CardInstance card = collection[index];
+            CardInstance card = Collection[index];
             return card;
         }
 
@@ -170,11 +170,11 @@ namespace Game {
         {
             CardInstance topCard;
 
-            if(collection.Count == 0)
+            if(Collection.Count == 0)
                 return null;
 
-            topCard = collection[collection.Count - 1];
-            collection.RemoveAt(collection.Count - 1);
+            topCard = Collection[Collection.Count - 1];
+            Collection.RemoveAt(Collection.Count - 1);
 
             return topCard;
         }
@@ -183,19 +183,19 @@ namespace Game {
         public CardInstance RemoveCardAt (int index)
         {
             CardInstance card;
-            card = collection[index];
-            collection.RemoveAt(index);
+            card = Collection[index];
+            Collection.RemoveAt(index);
             return card;
         }
 
         public void AddCardTop (CardInstance card)
         {
-            collection.Add(card);
+            Collection.Add(card);
         }
 
         public void AddCardAt (CardInstance card, int index)
         {
-            collection.Insert(index, card);
+            Collection.Insert(index, card);
         }
     }
 
