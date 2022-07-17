@@ -24,6 +24,7 @@ namespace Game {
 
         public PlayingField leftField;
         public PlayingField rightField;
+        public GameEvent eventsystem;
         // true = left, false = right
         public bool turn;
 
@@ -73,6 +74,8 @@ namespace Game {
 
         public IEnumerator Cycle()
         {
+            //instantiate each player's deck
+
             while(true) // primitivity
             {
                 turn = false;

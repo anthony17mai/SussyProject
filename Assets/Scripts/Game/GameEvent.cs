@@ -10,10 +10,12 @@ namespace Game
     {
         enum EventTy
         { 
-            OnCardMove, // Card Moved Locations - can use for unity animations. Has to pass in an object that knows the two locations that it moved from
-            OnCardResolve, // Card is resolved from the stack.
-            OnPlayerDraw, // a player draws a card
-            OnDamageRecieved, // a player takes damage from a source
+            ConstructCard,  //called at the start of the game to construct card instances
+
+            CardMove, // Card Moved Locations - can use for unity animations. Has to pass in an object that knows the two locations that it moved from
+            CardResolve, // Card is resolved from the stack.
+            PlayerDraw, // a player draws a card
+            DamageRecieved, // a player takes damage from a source
             SIZE,   // Number of events
         }
 
@@ -21,7 +23,7 @@ namespace Game
         // data could mean literally whatever you want it to mean
         public delegate void EventObserver(GameInstance state, object data);
 
-        List<EventObserver> _mapping;
+        private List<EventObserver> _mapping;
 
         void Attach(EventTy type, EventObserver observer)
         {
