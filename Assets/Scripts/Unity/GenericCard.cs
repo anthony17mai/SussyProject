@@ -11,6 +11,9 @@ public class GenericCard : MonoBehaviour
     public UnityEngine.UI.Text cardDesc;
     public UnityEngine.UI.Text cardCost;
 
+    //the container for the card
+    public CardContainer container;
+
     private HasProxy _proxy;
     public HasProxy Proxy
     {
@@ -31,25 +34,44 @@ public class GenericCard : MonoBehaviour
             return _dimensions;
         }
     }
+    private UniversalSortingLayer _usl;
+    public UniversalSortingLayer UniversalSortingLayer
+    {
+        get
+        {
+            if (_usl == null)
+            {
+                _usl = GetComponent<UniversalSortingLayer>();
+            }
+            return _usl;
+        }
+    }
 
     [System.NonSerialized]
     public Game.Card card;
     [System.NonSerialized]
     public Game.CardInstance instance;
 
-    public GameObject GetCanvasProxy() => Proxy.proxy;
-    public CardContainer Container { get; set; }
+    public CanvasProxy GetCanvasProxy() => Proxy.proxy;
 
-    void Start()
+    void Awake()
     {
+        //Initialize these
+        _ = Proxy;
+        _ = Dimensions;
+        _ = UniversalSortingLayer;
+
         card = Game.CardSerializer.Deserialize(cardFile);
         cardImage.sprite = card.image;
         cardName.text = card.name;
         cardDesc.text = card.description;
         cardCost.text = card.cost.ToString();
+    }
 
-        _ = Proxy;
-        _ = Dimensions;
+    void Start()
+    {
+        //start the card in it's container - this works because HasProxy runs on Awake()
+        container.PlaceCard(this);
     }
 
     void Update()

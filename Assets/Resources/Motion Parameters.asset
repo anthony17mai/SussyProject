@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91735eeb96e94424086bf804cc5ff28f, type: 3}
+  m_Name: Motion Parameters
+  m_EditorClassIdentifier: Assembly-CSharp::MotionParameters
+  parameters: {x: 5, y: 1, z: 0.8}
+  coefficients: {x: 0.06366198, y: 0.0010132118, z: 0.02546479}

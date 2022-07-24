@@ -13,8 +13,8 @@ TagManager:
   - Water
   - UI
   - Draggable
-  - CardContainer
-  - 
+  - Card Container
+  - Card Interface
   - 
   - 
   - 
@@ -39,6 +39,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Card Container
+    uniqueID: 3891624073
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UIDragger
+    uniqueID: 2258401501
     locked: 0

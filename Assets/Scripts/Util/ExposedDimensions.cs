@@ -14,7 +14,7 @@ public class ExposedDimensions : MonoBehaviour
     }
     public Vector2 GetScreenDimensions()
     {
-        return GetDimensions() * GameController.gameController.scaleFactor.GetScaleFactor();
+        return GetDimensions() * GameController.Instance.scaleFactor.GetScaleFactor();
     }
 
     void Broadcast()
@@ -25,7 +25,7 @@ public class ExposedDimensions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameController.gameController.scaleFactor.OnModify.AddListener(Broadcast);
+        GameController.Instance.scaleFactor.OnModify.AddListener(Broadcast);
     }
 
     // Update is called once per frame

@@ -34,7 +34,7 @@ namespace Game
 
         protected CharData chardata;
 
-        public abstract IEnumerator PromptAgent(GameInstance game, ref DecisionData decision);
+        public abstract IEnumerator PromptAgent(GameInstance game, DecisionData decision);
 
         public void TakeDamage(int damage)
         {
@@ -49,21 +49,14 @@ namespace Game
         }
     }
 
-    public class Player : Agent
-    {
-        public override IEnumerator PromptAgent(GameInstance game, ref DecisionData decision)
-        {
-            // TODO: give the user control of the game - the user can choose to play a card or to pass their turn.
-            throw new NotImplementedException();
-        }
-    }
+    
 
     /// <summary>
     /// Representation of a player playing synchronously using a lan connection
     /// </summary>
     public class LanPlayer : Agent
     {
-        public override IEnumerator PromptAgent(GameInstance game, ref DecisionData decision)
+        public override IEnumerator PromptAgent(GameInstance game, DecisionData decision)
         {
             throw new NotImplementedException();
         }
@@ -80,7 +73,7 @@ namespace Game
 
         public Decider decider;
 
-        public override IEnumerator PromptAgent(GameInstance game, ref DecisionData decision)
+        public override IEnumerator PromptAgent(GameInstance game, DecisionData decision)
         {
             decision = decider.Invoke(game);
             return null;

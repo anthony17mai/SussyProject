@@ -11,8 +11,21 @@ public class UIDragger : MonoBehaviour
     [ReadOnly]
     public CanvasProxy target = null;
 
-    public LayerMask cardLayermask;
-    public LayerMask containerLayermask;
+    public string sortingLayerName;
+    [Tooltip("used for card proxies")]
+    public LayerMask cardLayerMask;
+    [Tooltip("not used yet")]
+    public LayerMask containerLayerMask;// not used - Containers are not raycasted on
+    [Tooltip("used for when player drops a card")]
+    public LayerMask CardInterfaceMask; // used for when player drops a card
+
+    //s
+    private int sortingLayerID;
+
+    private void Start()
+    {
+        sortingLayerID = SortingLayer.NameToID(sortingLayerName);
+    }
 
     public void ClickAction(InputAction.CallbackContext callback)
     {
@@ -31,7 +44,7 @@ public class UIDragger : MonoBehaviour
     {
         //pick up object at mouse location
         //TODO: its better to take all of the mouse hits and find the one which is closest to the cursor
-        RaycastHit2D hit = Physics2D.Raycast(Mouse.current.position.ReadValue(), Vector2.zero, Mathf.Infinity, cardLayermask);
+        RaycastHit2D hit = Physics2D.Raycast(Mouse.current.position.ReadValue(), Vector2.zero, Mathf.Infinity, cardLayerMask);
 
         if (hit.transform != null)
         { 
@@ -47,14 +60,16 @@ public class UIDragger : MonoBehaviour
     {
         //Check if the card has a location it belongs to
         CanvasProxy prox = target.GetComponent<CanvasProxy>();
-        GenericCard card = prox.Target;
+        GenericCard card = prox.Card;
 
-        if (card.Container != null)
+        if (card.container != null)
         {
             //unhook from container
-            card.Container.Pickup(card);
+            card.container.Pickup(card);
         }
 
+        prox.SetRotation(0);
+        card.UniversalSortingLayer.Set(sortingLayerID, 0);
         this.target = prox;
     }
     void DropObject()
@@ -62,7 +77,7 @@ public class UIDragger : MonoBehaviour
         if (target != null)
         {
             //Check where the player drops the card
-            RaycastHit2D hit = Physics2D.Raycast(Mouse.current.position.ReadValue(), Vector2.zero, Mathf.Infinity, containerLayermask);
+            RaycastHit2D hit = Physics2D.Raycast(Mouse.current.position.ReadValue(), Vector2.zero, Mathf.Infinity, CardInterfaceMask);
 
             if (hit.transform != null)
             {
@@ -71,7 +86,7 @@ public class UIDragger : MonoBehaviour
 
                 if (cardInterface != null)
                 {
-                    cardInterface.DropCard(target.Target);
+                    cardInterface.DropCard(target.Card);
                     target = null;
                 }
                 else
@@ -81,8 +96,8 @@ public class UIDragger : MonoBehaviour
             }
             else
             {
-                //release card TODO
-                UpdateTargetPosition();
+                //release card - place it in it's container
+                target.Card.container.PlaceCard(target.Card);
                 target = null;
             }
         }

@@ -7,9 +7,11 @@ public class CanvasProxy : MonoBehaviour
     //used to pass argument to RectTracker when instantiating
     //public static RectTransform instanArgument;
 
-    public GenericCard Target { get; private set; }
+    public GenericCard Card { get; private set; }
 
-    private ExposedDimensions GetDimensions() { return Target.Dimensions; }
+    private ExposedDimensions GetDimensions() { return Card.Dimensions; }
+
+    public float rotation;
 
     private void UpdateSize()
     {
@@ -18,12 +20,18 @@ public class CanvasProxy : MonoBehaviour
         (transform as RectTransform).sizeDelta = rectsize;
         GetComponent<BoxCollider2D>().size = rectsize;
     }
+    public void SetRotation(float r)
+    {
+        transform.rotation = Quaternion.Euler(0, 0, -r);
+
+        rotation = r;
+    }
 
     //called after instantiation
     public void Initialize(GenericCard instanArgument)
     {
-        Target = instanArgument;
-        if (Target == null)
+        Card = instanArgument;
+        if (Card == null)
         {
             Debug.LogError("Target is null");
             return;

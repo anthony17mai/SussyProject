@@ -8,7 +8,7 @@ public class HasProxy : MonoBehaviour
 {
     public GameObject prefab;
     [ReadOnly]
-    public GameObject proxy;
+    public CanvasProxy proxy;
 
     public void SpawnProxy()
     {
@@ -24,7 +24,7 @@ public class HasProxy : MonoBehaviour
         }
 
         GameObject parent = GameObject.Find("Canvas");
-        proxy = Instantiate<GameObject>(prefab, parent.transform);
+        proxy = Instantiate<GameObject>(prefab, parent.transform).GetComponent<CanvasProxy>();
         proxy.GetComponent<CanvasProxy>().Initialize(GetComponent<GenericCard>());
     }
     public void DeleteProxy()
@@ -53,11 +53,11 @@ public class HasProxy : MonoBehaviour
 
     private void OnDisable()
     {
-        proxy.SetActive(false);
+        if (proxy != null) proxy.gameObject.SetActive(false);
     }
     private void OnEnable()
     {
-        proxy.SetActive(true);
+        proxy.gameObject.SetActive(true);
     }
 
     private void OnDestroy()

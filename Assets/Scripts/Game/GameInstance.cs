@@ -79,15 +79,15 @@ namespace Game {
             while(true) // primitivity
             {
                 turn = false;
-                Agent.DecisionData decision = null;
+                Agent.DecisionData decision = new Agent.DecisionData();
                 IEnumerator cycle = null;
                 if(turn == true)
                 {
-                    cycle = leftField.owner.PromptAgent(this, ref decision);
+                    cycle = leftField.owner.PromptAgent(this, decision);
                     while(cycle != null)
                     {
                         yield return cycle;
-                        cycle = leftField.owner.PromptAgent(this, ref decision);
+                        cycle = leftField.owner.PromptAgent(this, decision);
                     }
 
                     if(decision.type == Decision.play_card)
@@ -103,11 +103,11 @@ namespace Game {
                 }
                 else if(turn == false)
                 {
-                    cycle = rightField.owner.PromptAgent(this, ref decision);
+                    cycle = rightField.owner.PromptAgent(this, decision);
                     while(cycle != null)
                     {
                         yield return cycle;
-                        cycle = rightField.owner.PromptAgent(this, ref decision);
+                        cycle = rightField.owner.PromptAgent(this, decision);
                     }
 
                     if(decision.type == Decision.play_card)

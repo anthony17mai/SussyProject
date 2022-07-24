@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 305693113}
   - component: {fileID: 305693114}
   - component: {fileID: 305693120}
+  - component: {fileID: 499659270}
   m_Layer: 0
   m_Name: CardBase
   m_TagString: Untagged
@@ -63,6 +64,7 @@ MonoBehaviour:
   cardName: {fileID: 8538209563377950221}
   cardDesc: {fileID: 8538209563404900431}
   cardCost: {fileID: 8538209563226887465}
+  container: {fileID: 0}
 --- !u!222 &2688604315490905292
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -155,6 +157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50cdd25b64f5e114289e923b9c985c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motionParameters: {fileID: 11400000, guid: 3a2695e791280e944b7748117c1a33d1, type: 2}
+  rotationParameters: {fileID: 11400000, guid: f8407cc387d14d04e9dfce2a17cc8d1a, type: 2}
+  y: {x: 0, y: 0}
+  yPrime: {x: 0, y: 0}
 --- !u!114 &305693114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +190,20 @@ MonoBehaviour:
   OnModify:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &499659270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8538209562131444159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32bdcd06773c20439039740b2711fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingLayerID: 0
+  orderInLayer: 0
 --- !u!1 &8538209562418329114
 GameObject:
   m_ObjectHideFlags: 0

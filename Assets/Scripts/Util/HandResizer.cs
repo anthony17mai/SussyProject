@@ -13,7 +13,7 @@ public class HandResizer : MonoBehaviour
     private void Start()
     {
         SetSize();
-        GameController.gameController.scaleFactor.OnModify.AddListener(SetSize);
+        GameController.Instance.scaleFactor.OnModify.AddListener(SetSize);
     }
 
     public void SetSize()
